@@ -1,11 +1,20 @@
+import type { LinksFunction } from "@remix-run/node";
 import {
   Form,
+  Link,
   Links,
   LiveReload,
   Meta,
+  Outlet,
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
+
+import appStylesHref from "./app.css";
+
+export const links: LinksFunction = () => [
+  { rel: "stylesheet", href: appStylesHref },
+];
 
 export default function App() {
   return (
@@ -17,7 +26,7 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <div id="sidebar">
+        <div id="sidebar">          
           <h1>Remix Contacts</h1>
           <div>
             <Form id="search-form" role="search">
@@ -37,13 +46,16 @@ export default function App() {
           <nav>
             <ul>
               <li>
-                <a href={`/contacts/1`}>Your Name</a>
+              <Link to={`/contacts/1`}>Your Name</Link>
               </li>
               <li>
-                <a href={`/contacts/2`}>Your Friend</a>
+              <Link to={`/contacts/2`}>Your Friend</Link>
               </li>
             </ul>
           </nav>
+        </div>
+        <div id="detail">
+          <Outlet />
         </div>
 
         <ScrollRestoration />
