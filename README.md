@@ -1,38 +1,34 @@
-# Welcome to Remix!
+# Contacts
 
-- [Remix Docs](https://remix.run/docs)
+This app uses React Router 7 Framework Mode, the successor to Remix 2, with React 18 and Vite 6.
+The security update replaces the Remix classic compiler and removes unused dependencies,
+including Wrangler, tar, undici, and ws. Use Node.js 22.13+ (or 20.19+ / 24+) to match the tooling requirements.
 
 ## Development
 
-From your terminal:
-
 ```sh
+nvm use # or select a supported Node version manually
+npm ci
 npm run dev
 ```
 
-This starts your app in development mode, rebuilding assets on file changes.
+Routes are defined in `app/routes.ts`. Vite configuration lives in `vite.config.ts`.
 
-## Deployment
-
-First, build your app for production:
-
-```sh   
-npm run build
-```
-
-Then run the app in production mode:
+## Validation
 
 ```sh
+npm run typecheck
+npm run build
+npm audit
+```
+
+## Production
+
+```sh
+npm run build
 npm start
 ```
 
-Now you'll need to pick a host to deploy it to.
-
-### DIY
-
-If you're familiar with deploying node applications, the built-in Remix app server is production-ready.
-
-Make sure to deploy the output of `remix build`
-
-- `build/`
-- `public/build/`
+Deploy both `build/client/` and `build/server/` to a Node.js host, along with
+`package.json`, `package-lock.json`, and production dependencies (`npm ci --omit=dev`).
+The server entry point is `build/server/index.js`.
