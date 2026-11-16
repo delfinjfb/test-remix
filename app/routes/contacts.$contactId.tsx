@@ -1,4 +1,4 @@
-import { Form } from "@remix-run/react";
+import { Form } from "react-router";
 import type { FunctionComponent } from "react";
 
 import type { ContactRecord } from "../data";
